@@ -94,8 +94,8 @@ export function InboxView() {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-4xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-4 sm:space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -108,7 +108,7 @@ export function InboxView() {
           <Button
             type="button"
             onClick={() => setQuickCaptureOpen(true)}
-            className="min-h-[42px] gap-1.5 rounded-xl px-4 text-xs font-semibold"
+            className="min-h-[42px] gap-1.5 rounded-xl px-4 text-xs font-semibold active:scale-95 transition-transform"
           >
             <Plus className="h-4 w-4" />
             Add Photo or File
@@ -116,9 +116,9 @@ export function InboxView() {
         </div>
 
         {/* Inline Fast Capture */}
-        <Card className="gap-0 p-3.5 sm:p-4">
+        <Card className="gap-0 p-3 sm:p-4">
           <form onSubmit={(e) => void handleInlineCapture(e)} className="space-y-2.5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <Input
                 type="text"
                 value={quickTitle}
@@ -129,13 +129,13 @@ export function InboxView() {
               />
               <Button
                 type="submit"
-                className="min-h-[44px] shrink-0 rounded-xl px-4 text-xs font-semibold"
+                className="min-h-[44px] shrink-0 rounded-xl px-4 text-xs font-semibold active:scale-95 transition-transform"
               >
                 Save
               </Button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
               <Select
                 value={quickKind}
                 onValueChange={(value) => {
@@ -144,7 +144,7 @@ export function InboxView() {
               >
                 <SelectTrigger
                   aria-label="Capture item kind"
-                  className="h-9 min-w-[116px] rounded-xl bg-background/50 px-3 text-xs font-medium"
+                  className="h-9 w-full sm:w-auto sm:min-w-[116px] rounded-xl bg-background/50 px-3 text-xs font-medium"
                 >
                   <SelectValue>{KIND_LABELS[quickKind]}</SelectValue>
                 </SelectTrigger>
@@ -163,7 +163,7 @@ export function InboxView() {
                 onChange={(e) => setQuickBody(e.target.value)}
                 placeholder="Optional details or web address..."
                 aria-label="Quick inbox details"
-                className="h-9 min-w-[180px] flex-1 rounded-xl bg-background/50 px-3 text-xs"
+                className="h-9 min-w-0 flex-1 rounded-xl bg-background/50 px-3 text-xs"
               />
             </div>
           </form>
@@ -281,7 +281,7 @@ export function InboxView() {
                           variant="outline"
                           size="sm"
                           onClick={() => void handleConvert(item.id, 'note')}
-                          className="min-h-[38px] gap-1.5 rounded-xl bg-background/50 px-3 text-xs"
+                          className="min-h-[38px] flex-1 sm:flex-none justify-center gap-1.5 rounded-xl bg-background/50 px-3 text-xs active:scale-95 transition-transform"
                         >
                           <FileText className="h-3.5 w-3.5 text-primary" />
                           Move to Notes
@@ -291,7 +291,7 @@ export function InboxView() {
                           variant="outline"
                           size="sm"
                           onClick={() => void handleConvert(item.id, 'task')}
-                          className="min-h-[38px] gap-1.5 rounded-xl bg-background/50 px-3 text-xs"
+                          className="min-h-[38px] flex-1 sm:flex-none justify-center gap-1.5 rounded-xl bg-background/50 px-3 text-xs active:scale-95 transition-transform"
                         >
                           <CheckSquare className="h-3.5 w-3.5 text-primary" />
                           Add to Tasks
@@ -301,7 +301,7 @@ export function InboxView() {
                           variant="outline"
                           size="sm"
                           onClick={() => void handleConvert(item.id, 'bookmark')}
-                          className="min-h-[38px] gap-1.5 rounded-xl bg-background/50 px-3 text-xs"
+                          className="min-h-[38px] flex-1 sm:flex-none justify-center gap-1.5 rounded-xl bg-background/50 px-3 text-xs active:scale-95 transition-transform"
                         >
                           <Bookmark className="h-3.5 w-3.5 text-primary" />
                           Save Link
@@ -312,7 +312,7 @@ export function InboxView() {
                             variant="outline"
                             size="sm"
                             onClick={() => void handleConvert(item.id, 'snippet')}
-                            className="min-h-[38px] gap-1.5 rounded-xl bg-background/50 px-3 text-xs"
+                            className="min-h-[38px] flex-1 sm:flex-none justify-center gap-1.5 rounded-xl bg-background/50 px-3 text-xs active:scale-95 transition-transform"
                           >
                             <Code2 className="h-3.5 w-3.5 text-primary" />
                             Save Clip

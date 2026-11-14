@@ -142,8 +142,8 @@ export function SnippetsBookmarksView() {
     SNIPPET_LANGUAGES.find((l) => l.value === snipLang)?.label ?? 'TypeScript';
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-4 sm:space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -163,24 +163,24 @@ export function SnippetsBookmarksView() {
             }}
           >
             <div className="no-scrollbar overflow-x-auto pb-0.5">
-              <TabsList className="h-11 w-max rounded-2xl bg-muted/65 p-1 backdrop-blur-md">
+              <TabsList className="h-11 w-max min-w-full justify-start gap-1 rounded-2xl bg-muted/65 p-1 backdrop-blur-md">
                 <TabsTrigger
                   value="bookmarks"
-                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3.5 text-xs"
+                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3 sm:px-3.5 text-xs"
                 >
                   <Bookmark className="h-3.5 w-3.5" />
                   Links ({bookmarks.length})
                 </TabsTrigger>
                 <TabsTrigger
                   value="snippets"
-                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3.5 text-xs"
+                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3 sm:px-3.5 text-xs"
                 >
                   <Code2 className="h-3.5 w-3.5" />
                   Snippets ({snippets.length})
                 </TabsTrigger>
                 <TabsTrigger
                   value="clipboard"
-                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3.5 text-xs"
+                  className="min-h-[36px] shrink-0 gap-1.5 rounded-xl px-3 sm:px-3.5 text-xs"
                 >
                   <Clipboard className="h-3.5 w-3.5" />
                   Clipboard ({clipboardEntries.length})

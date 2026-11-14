@@ -156,9 +156,9 @@ export function CollectionsView() {
   return (
     <div className="flex flex-1 flex-col overflow-hidden lg:flex-row">
       {/* Desktop Left Picker / Mobile Top Horizontal Strip */}
-      <div className="shrink-0 border-b border-border/60 bg-card/45 p-4 backdrop-blur-xl lg:w-64 lg:border-b-0 lg:border-r">
+      <div className="shrink-0 border-b border-border/60 bg-card/45 p-3.5 sm:p-4 backdrop-blur-xl lg:w-64 lg:border-b-0 lg:border-r">
         <h2 className="font-display text-sm font-semibold text-foreground">Lists & Tables</h2>
-        <div className="no-scrollbar mt-2.5 flex gap-1.5 overflow-x-auto pb-1 lg:flex-col lg:space-y-1 lg:overflow-visible">
+        <div className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto pb-1 lg:flex-col lg:space-y-1 lg:overflow-visible">
           {collections.map((col) => {
             const active = activeCollection?.id === col.id;
             return (
@@ -167,7 +167,7 @@ export function CollectionsView() {
                 type="button"
                 variant={active ? 'secondary' : 'ghost'}
                 onClick={() => setSelectedCollectionId(col.id)}
-                className={`min-h-[40px] shrink-0 justify-start rounded-xl px-3 text-xs whitespace-nowrap lg:w-full lg:truncate ${
+                className={`min-h-[38px] shrink-0 justify-start rounded-xl px-3 text-xs whitespace-nowrap active:scale-95 transition-all lg:w-full lg:truncate ${
                   active ? 'font-semibold text-foreground' : 'text-muted-foreground'
                 }`}
               >
@@ -187,11 +187,11 @@ export function CollectionsView() {
             onChange={(e) => setNewCollectionName(e.target.value)}
             placeholder="New list or table..."
             aria-label="New collection name"
-            className="h-10 min-w-0 flex-1 rounded-xl bg-background/50 px-3 text-xs"
+            className="h-9 min-w-0 flex-1 rounded-xl bg-background/50 px-3 text-xs"
           />
           <Button
             type="submit"
-            className="min-h-[40px] shrink-0 rounded-xl px-3.5 text-xs font-semibold"
+            className="min-h-[38px] shrink-0 rounded-xl px-3.5 text-xs font-semibold active:scale-95 transition-transform"
           >
             Create Table
           </Button>
@@ -199,29 +199,29 @@ export function CollectionsView() {
       </div>
 
       {/* Main Table Canvas */}
-      <div className="flex-1 overflow-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10">
+      <div className="flex-1 overflow-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10">
         {!activeCollection ? (
           <div className="p-10 text-center text-sm text-muted-foreground">
             Create a list or table to organize custom fields and items.
           </div>
         ) : (
           <div className="mx-auto max-w-5xl space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h1 className="font-display text-xl font-bold text-foreground">
+                <h1 className="font-display text-lg sm:text-xl font-bold text-foreground">
                   {activeCollection.name}
                 </h1>
                 <p className="text-xs text-muted-foreground">{activeCollection.description}</p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <Input
                   type="text"
                   value={filterText}
                   onChange={(e) => setFilterText(e.target.value)}
                   placeholder="Filter rows..."
                   aria-label="Filter collection rows"
-                  className="h-10 w-36 rounded-xl bg-card/60 px-3 text-xs sm:w-44"
+                  className="h-9 w-full rounded-xl bg-card/60 px-3 text-xs sm:w-44"
                 />
                 <Button
                   type="button"
@@ -230,7 +230,7 @@ export function CollectionsView() {
                   onClick={() =>
                     exportCollectionAsSpreadsheet(activeCollection, visibleRows, 'csv')
                   }
-                  className="min-h-[40px] gap-1 rounded-xl bg-card/60 px-3 text-xs"
+                  className="min-h-[38px] flex-1 sm:flex-none gap-1 rounded-xl bg-card/60 px-3 text-xs"
                 >
                   <Download className="h-3.5 w-3.5" />
                   CSV
@@ -242,7 +242,7 @@ export function CollectionsView() {
                   onClick={() =>
                     exportCollectionAsSpreadsheet(activeCollection, visibleRows, 'xlsx')
                   }
-                  className="min-h-[40px] gap-1 rounded-xl bg-card/60 px-3 text-xs"
+                  className="min-h-[38px] flex-1 sm:flex-none gap-1 rounded-xl bg-card/60 px-3 text-xs"
                 >
                   <Download className="h-3.5 w-3.5" />
                   XLSX
@@ -251,7 +251,7 @@ export function CollectionsView() {
                   type="button"
                   size="sm"
                   onClick={() => void handleAddRow()}
-                  className="min-h-[40px] gap-1 rounded-xl px-3.5 text-xs font-semibold"
+                  className="min-h-[38px] flex-1 sm:flex-none gap-1 rounded-xl px-3.5 text-xs font-semibold active:scale-95 transition-transform"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   Add Row
