@@ -275,11 +275,11 @@ export function NoteEditor({ onOpenTemplates }: NoteEditorProps) {
   return (
     <div className="flex min-w-0 flex-1 overflow-hidden">
       {/* Main Document Canvas */}
-      <div className="flex min-w-0 flex-1 flex-col overflow-y-auto pb-24 md:pb-8">
+      <div className="flex min-w-0 flex-1 flex-col overflow-y-auto content-pb-mobile md:pb-8">
         {/* Everyday Compact Frosted Formatting Bar */}
         {!readingMode && (
-          <div className="glass-bar sticky top-0 z-10 border-b border-border/70 px-3 py-1.5 sm:px-5">
-            <div className="flex items-center justify-between gap-2">
+          <div className="glass-bar sticky top-0 z-10 border-b border-border/70 px-2 py-1 sm:px-5 sm:py-1.5">
+            <div className="flex items-center justify-between gap-1.5 sm:gap-2">
               <div className="no-scrollbar flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto">
                 <ToolbarBtn
                   label="Checklist"
@@ -527,8 +527,8 @@ export function NoteEditor({ onOpenTemplates }: NoteEditorProps) {
         )}
 
         {/* Glassmorphic Paper Sheet */}
-        <article className="mx-auto w-full max-w-3xl px-3 py-4 sm:px-8 sm:py-7">
-          <Card className="gap-0 px-4 py-6 sm:px-9 sm:py-8">
+        <article className="mx-auto w-full max-w-3xl px-2.5 py-3 sm:px-8 sm:py-7">
+          <Card className="gap-0 px-3.5 py-5 sm:px-9 sm:py-8">
             <input
               type="text"
               value={titleInput}
@@ -536,7 +536,7 @@ export function NoteEditor({ onOpenTemplates }: NoteEditorProps) {
               onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="Note title..."
               aria-label="Document title"
-              className="w-full bg-transparent font-display text-2xl font-bold tracking-tight text-foreground outline-none placeholder:text-muted-foreground/55 sm:text-3xl"
+              className="w-full bg-transparent font-display text-xl font-bold tracking-tight text-foreground outline-none placeholder:text-muted-foreground/55 sm:text-3xl"
             />
 
             {/* Clean Minimal Metadata */}

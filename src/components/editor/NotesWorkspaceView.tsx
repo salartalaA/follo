@@ -116,12 +116,12 @@ export function NotesWorkspaceView({ onOpenTemplates }: NotesWorkspaceViewProps)
           aria-label="Notes and folders"
           className={`${
             selectedNoteId ? 'hidden lg:flex' : 'flex'
-          } w-full flex-col overflow-y-auto border-r border-border/70 pb-24 lg:w-80 lg:shrink-0 lg:bg-card/35 lg:backdrop-blur-xl lg:pb-6`}
+          } w-full flex-col overflow-y-auto border-r border-border/70 content-pb-mobile lg:w-80 lg:shrink-0 lg:bg-card/35 lg:backdrop-blur-xl lg:pb-6`}
         >
-          <div className="mx-auto w-full max-w-2xl space-y-3.5 p-4 sm:p-5 lg:max-w-none">
+          <div className="mx-auto w-full max-w-2xl space-y-3 p-3.5 sm:p-5 lg:max-w-none">
             {/* Simple Header */}
             <div className="flex items-center justify-between gap-2">
-              <h1 className="font-display text-xl font-bold tracking-tight text-foreground lg:text-base">
+              <h1 className="font-display text-lg font-bold tracking-tight text-foreground sm:text-xl lg:text-base">
                 Notes
               </h1>
               <div className="flex items-center gap-1.5">
@@ -134,7 +134,7 @@ export function NotesWorkspaceView({ onOpenTemplates }: NotesWorkspaceViewProps)
                   className="min-h-[38px] gap-1.5 rounded-xl bg-card/55 px-2.5 text-xs text-muted-foreground"
                 >
                   <LayoutTemplate className="h-3.5 w-3.5 text-primary" />
-                  Templates
+                  <span className="hidden xs:inline sm:inline">Templates</span>
                 </Button>
                 <Button
                   type="button"
@@ -320,12 +320,12 @@ export function NotesWorkspaceView({ onOpenTemplates }: NotesWorkspaceViewProps)
                       key={note.id}
                       type="button"
                       onClick={() => setSelectedNoteId(note.id)}
-                      className={`flex min-h-[64px] w-full items-center gap-3 px-4 py-3 text-left transition-colors ${
+                      className={`flex min-h-[64px] w-full items-center gap-2.5 px-3.5 py-3 text-left transition-colors sm:gap-3 sm:px-4 active:bg-muted/60 ${
                         isSelected ? 'bg-secondary/70' : 'hover:bg-muted/40'
                       }`}
                     >
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex min-w-0 items-center gap-1.5">
                           <span className="truncate text-sm font-semibold text-foreground">
                             {note.title || 'Untitled Note'}
                           </span>

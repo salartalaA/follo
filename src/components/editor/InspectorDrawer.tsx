@@ -152,9 +152,13 @@ export function InspectorDrawer({ note }: InspectorDrawerProps) {
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
-                <TabsTrigger key={tab.id} value={tab.id} className="gap-1 rounded-lg text-xs">
-                  <Icon className="h-3.5 w-3.5" />
-                  <span>{tab.label}</span>
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id}
+                  className="gap-1 rounded-lg px-1 py-1 text-[11px] sm:px-2 sm:text-xs"
+                >
+                  <Icon className="h-3.5 w-3.5 shrink-0" />
+                  <span className="truncate">{tab.label}</span>
                 </TabsTrigger>
               );
             })}
@@ -162,7 +166,7 @@ export function InspectorDrawer({ note }: InspectorDrawerProps) {
         </Tabs>
       </div>
 
-      <div className="flex-1 space-y-6 overflow-y-auto p-4 pb-safe">
+      <div className="flex-1 space-y-5 overflow-y-auto p-3.5 sm:p-4 pb-safe">
         {inspectorTab === 'links' && (
           <>
             <section>
@@ -461,7 +465,7 @@ export function InspectorDrawer({ note }: InspectorDrawerProps) {
 
   return (
     <Sheet open={inspectorOpen} onOpenChange={setInspectorOpen}>
-      <SheetContent side="bottom" className="max-h-[82vh] gap-0 p-0">
+      <SheetContent side="bottom" className="max-h-[85dvh] gap-0 p-0">
         <div className="pt-2.5">
           <div className="mx-auto h-1.5 w-10 rounded-full bg-border" />
         </div>
