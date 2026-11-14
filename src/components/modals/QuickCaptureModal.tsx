@@ -102,7 +102,7 @@ export function QuickCaptureModal() {
 
   return (
     <Dialog open={quickCaptureOpen} onOpenChange={setQuickCaptureOpen}>
-      <DialogContent className="max-h-[90vh] max-w-lg overflow-y-auto p-5 sm:p-6">
+      <DialogContent className="max-h-[85dvh] max-w-lg overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
           <DialogTitle className="font-display text-base font-semibold">Quick Add</DialogTitle>
           <DialogDescription className="text-xs">
@@ -222,16 +222,19 @@ export function QuickCaptureModal() {
 
           {error && <p className="text-xs font-medium text-destructive">{error}</p>}
 
-          <DialogFooter className="mt-2 bg-transparent p-0 sm:mx-0 sm:mb-0 sm:border-0">
+          <DialogFooter className="mt-2 flex-row justify-end gap-2 bg-transparent p-0 sm:mx-0 sm:mb-0 sm:border-0">
             <Button
               type="button"
               variant="outline"
               onClick={() => setQuickCaptureOpen(false)}
-              className="min-h-[44px] rounded-xl px-4 text-xs"
+              className="min-h-[44px] flex-1 rounded-xl px-4 text-xs sm:flex-none"
             >
               Cancel
             </Button>
-            <Button type="submit" className="min-h-[44px] rounded-xl px-5 text-xs font-semibold">
+            <Button
+              type="submit"
+              className="min-h-[44px] flex-1 rounded-xl px-5 text-xs font-semibold sm:flex-none"
+            >
               {mode === 'task' ? 'Add To-Do' : 'Save'}
             </Button>
           </DialogFooter>

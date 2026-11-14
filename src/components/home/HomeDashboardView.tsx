@@ -148,10 +148,10 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
   const focusTasks = [...overdueTasks, ...todayTasks].slice(0, 4);
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-4xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-4 sm:space-y-5">
         {/* Friendly Greeting & Compact Space Strip */}
-        <section className="space-y-3">
+        <section className="space-y-2.5 sm:space-y-3">
           <div>
             <p className="text-xs font-medium text-muted-foreground">{formattedToday}</p>
             <h1 className="mt-0.5 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -169,7 +169,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
                   variant={active ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setActiveWorkspaceId(ws.id)}
-                  className={`min-h-[38px] shrink-0 rounded-xl px-3.5 text-xs ${
+                  className={`min-h-[38px] shrink-0 rounded-xl px-3.5 text-xs active:scale-95 transition-all ${
                     active ? 'font-semibold' : 'bg-card/55 text-muted-foreground backdrop-blur-md'
                   }`}
                 >
@@ -181,7 +181,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
         </section>
 
         {/* Simple One-Tap Capture Card */}
-        <Card className="gap-0 p-3.5 sm:p-4">
+        <Card className="gap-0 p-3 sm:p-4">
           <form onSubmit={(e) => void handleQuickSave(e)} className="space-y-2.5">
             <div className="flex items-center gap-2">
               <Input
@@ -198,14 +198,14 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
               />
               <Button
                 type="submit"
-                className="min-h-[44px] shrink-0 gap-1 rounded-xl px-4 text-xs font-semibold"
+                className="min-h-[44px] shrink-0 gap-1 rounded-xl px-4 text-xs font-semibold active:scale-95 transition-transform"
               >
                 <Plus className="h-4 w-4" />
                 Save
               </Button>
             </div>
 
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <Tabs
                 value={quickMode}
                 onValueChange={(value) => {
@@ -213,10 +213,16 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
                 }}
               >
                 <TabsList className="h-9 rounded-xl bg-muted/65 p-1">
-                  <TabsTrigger value="idea" className="rounded-lg px-3 text-xs font-medium">
+                  <TabsTrigger
+                    value="idea"
+                    className="rounded-lg px-2.5 sm:px-3 text-xs font-medium"
+                  >
                     Quick Note
                   </TabsTrigger>
-                  <TabsTrigger value="task" className="rounded-lg px-3 text-xs font-medium">
+                  <TabsTrigger
+                    value="task"
+                    className="rounded-lg px-2.5 sm:px-3 text-xs font-medium"
+                  >
                     To-Do
                   </TabsTrigger>
                 </TabsList>
@@ -227,7 +233,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => setQuickCaptureOpen(true)}
-                className="min-h-[36px] gap-1.5 rounded-xl px-2.5 text-xs text-muted-foreground"
+                className="min-h-[36px] gap-1.5 rounded-xl px-2.5 text-xs text-muted-foreground active:scale-95 transition-transform"
               >
                 <Paperclip className="h-3.5 w-3.5" />
                 Photo or File
@@ -238,7 +244,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
 
         {/* Today's To-Dos */}
         <Card className="gap-0 py-0">
-          <CardHeader className="flex flex-row items-center justify-between border-b border-border/60 px-4 py-3">
+          <CardHeader className="flex flex-row items-center justify-between border-b border-border/60 px-3.5 py-3 sm:px-4">
             <CardTitle className="font-display text-base font-semibold">
               Today&apos;s To-Dos
             </CardTitle>
@@ -255,7 +261,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
           </CardHeader>
 
           {dueReminders.length > 0 && (
-            <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-secondary/45 px-4 py-2.5 text-xs">
+            <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-secondary/45 px-3.5 py-2.5 text-xs sm:px-4">
               <div className="flex min-w-0 items-center gap-2 text-foreground">
                 <Bell className="h-3.5 w-3.5 shrink-0 text-primary" />
                 <span className="truncate">{dueReminders[0].title}</span>
@@ -279,14 +285,17 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
               </div>
             ) : (
               focusTasks.map((task) => (
-                <div key={task.id} className="flex min-h-[54px] items-center gap-1.5 px-2.5">
+                <div
+                  key={task.id}
+                  className="flex min-h-[52px] items-center gap-1.5 px-2 sm:px-2.5"
+                >
                   <Button
                     type="button"
                     variant="ghost"
                     size="icon-lg"
                     onClick={() => void toggleTaskComplete(task.id)}
                     aria-label={`Mark "${task.title}" ${task.completed ? 'incomplete' : 'complete'}`}
-                    className="min-h-[44px] min-w-[44px] shrink-0 rounded-xl text-muted-foreground hover:text-primary"
+                    className="min-h-[44px] min-w-[44px] shrink-0 rounded-xl text-muted-foreground hover:text-primary active:scale-90 transition-transform"
                   >
                     {task.completed ? (
                       <CheckCircle2 className="h-5 w-5 text-primary" />
@@ -312,7 +321,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
 
         {/* Recent Notes */}
         <Card className="gap-0 py-0">
-          <CardHeader className="flex flex-row items-center justify-between gap-2 border-b border-border/60 px-4 py-3">
+          <CardHeader className="flex flex-row items-center justify-between gap-2 border-b border-border/60 px-3.5 py-3 sm:px-4">
             <CardTitle className="font-display text-base font-semibold">Recent Notes</CardTitle>
             <div className="flex items-center gap-1.5">
               <Button
@@ -328,7 +337,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
                 type="button"
                 size="sm"
                 onClick={() => void handleCreateBlankNote()}
-                className="min-h-[38px] gap-1 rounded-xl px-3 text-xs font-semibold"
+                className="min-h-[38px] gap-1 rounded-xl px-3 text-xs font-semibold active:scale-95 transition-transform"
               >
                 <FilePlus2 className="h-3.5 w-3.5" />
                 New Note
@@ -347,7 +356,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
                   key={note.id}
                   type="button"
                   onClick={() => setSelectedNoteId(note.id)}
-                  className="flex min-h-[58px] w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-muted/40"
+                  className="flex min-h-[58px] w-full items-center gap-2.5 px-3 py-2.5 text-left transition-colors hover:bg-muted/40 sm:gap-3 sm:px-4 active:bg-muted/60"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-background/50 text-primary">
                     <FileText className="h-4 w-4" />
@@ -369,12 +378,12 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
         </Card>
 
         {/* Two Simple Shortcuts: Today's Journal & Quick Inbox */}
-        <section className="grid grid-cols-2 gap-3">
+        <section className="grid grid-cols-2 gap-2.5 sm:gap-3">
           <Card className="gap-0 p-0 transition-colors hover:ring-primary/50">
             <button
               type="button"
               onClick={() => void handleOpenTodayDailyNote()}
-              className="flex min-h-[82px] w-full flex-col items-start justify-between p-3.5 text-left"
+              className="flex min-h-[82px] w-full flex-col items-start justify-between p-3 text-left sm:p-3.5 active:bg-muted/40 rounded-2xl"
             >
               <CalendarDays className="h-5 w-5 text-primary" />
               <div>
@@ -388,7 +397,7 @@ export function HomeDashboardView({ onOpenTemplates }: HomeDashboardViewProps) {
             <button
               type="button"
               onClick={() => setActiveView('inbox')}
-              className="flex min-h-[82px] w-full flex-col items-start justify-between p-3.5 text-left"
+              className="flex min-h-[82px] w-full flex-col items-start justify-between p-3 text-left sm:p-3.5 active:bg-muted/40 rounded-2xl"
             >
               <Inbox className="h-5 w-5 text-primary" />
               <div>
