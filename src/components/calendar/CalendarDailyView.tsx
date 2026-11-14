@@ -70,8 +70,8 @@ export function CalendarDailyView() {
   const selectedDayHasNote = dailyNotesByDate.has(selectedDay);
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-4 sm:space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -85,26 +85,26 @@ export function CalendarDailyView() {
           <Button
             type="button"
             onClick={() => void handleOpenDaily(todayIso)}
-            className="min-h-[42px] gap-1.5 rounded-xl px-4 text-xs font-semibold"
+            className="min-h-[42px] gap-1.5 rounded-xl px-4 text-xs font-semibold active:scale-95 transition-transform"
           >
             <CalendarDays className="h-4 w-4" />
             Open Today&apos;s Note
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-12">
           {/* Calendar Grid */}
-          <Card className="gap-0 p-4 sm:p-5 lg:col-span-8">
-            <div className="mb-4 flex items-center justify-between">
+          <Card className="gap-0 p-3 sm:p-5 lg:col-span-8">
+            <div className="mb-3 sm:mb-4 flex items-center justify-between">
               <h2 className="font-display text-base font-semibold text-foreground">{monthLabel}</h2>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1 sm:gap-1.5">
                 <Button
                   type="button"
                   variant="outline"
                   size="icon"
                   onClick={() => shiftMonth(-1)}
                   aria-label="Previous month"
-                  className="min-h-[40px] min-w-[40px] rounded-xl bg-background/50"
+                  className="min-h-[38px] min-w-[38px] rounded-xl bg-background/50 sm:min-h-[40px] sm:min-w-[40px]"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
@@ -117,7 +117,7 @@ export function CalendarDailyView() {
                     setCursor({ year: now.getFullYear(), month: now.getMonth() });
                     setSelectedDay(todayIso);
                   }}
-                  className="min-h-[40px] rounded-xl bg-background/50 px-3 text-xs font-medium"
+                  className="min-h-[38px] rounded-xl bg-background/50 px-2.5 text-xs font-medium sm:min-h-[40px] sm:px-3"
                 >
                   Today
                 </Button>
@@ -127,14 +127,14 @@ export function CalendarDailyView() {
                   size="icon"
                   onClick={() => shiftMonth(1)}
                   aria-label="Next month"
-                  className="min-h-[40px] min-w-[40px] rounded-xl bg-background/50"
+                  className="min-h-[38px] min-w-[38px] rounded-xl bg-background/50 sm:min-h-[40px] sm:min-w-[40px]"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               </div>
             </div>
 
-            <div className="grid grid-cols-7 gap-1.5 text-center text-xs font-medium text-muted-foreground">
+            <div className="grid grid-cols-7 gap-1 sm:gap-1.5 text-center text-xs font-medium text-muted-foreground">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
                 <div key={d} className="py-1">
                   {d}
@@ -142,14 +142,14 @@ export function CalendarDailyView() {
               ))}
             </div>
 
-            <div className="mt-1 grid grid-cols-7 gap-1.5">
+            <div className="mt-1 grid grid-cols-7 gap-1 sm:gap-1.5">
               {cells.map((cell, pos) => {
                 const iso = cell.iso;
                 if (!iso || cell.dayNum === null) {
                   return (
                     <div
                       key={`empty-slot-${cursor.year}-${cursor.month}-${pos.toString(36)}`}
-                      className="h-14 rounded-xl bg-background/30 sm:h-20"
+                      className="h-13 rounded-xl bg-background/30 sm:h-20"
                     />
                   );
                 }
@@ -165,7 +165,7 @@ export function CalendarDailyView() {
                     type="button"
                     onClick={() => setSelectedDay(iso)}
                     onDoubleClick={() => void handleOpenDaily(iso)}
-                    className={`flex h-14 flex-col items-center justify-between rounded-xl border p-1.5 text-left transition-colors sm:h-20 sm:items-start sm:p-2 ${
+                    className={`flex h-13 flex-col items-center justify-between rounded-xl border p-1 text-left transition-all sm:h-20 sm:items-start sm:p-2 active:scale-95 ${
                       isSelected
                         ? 'border-primary bg-secondary/75'
                         : isToday
@@ -174,22 +174,22 @@ export function CalendarDailyView() {
                     }`}
                   >
                     <span
-                      className={`font-mono text-xs font-semibold tabular-nums ${
+                      className={`font-mono text-[11px] sm:text-xs font-semibold tabular-nums ${
                         isToday || isSelected ? 'text-primary' : 'text-foreground'
                       }`}
                     >
                       {cell.dayNum}
                     </span>
 
-                    <div className="flex w-full items-center justify-center gap-1 sm:flex-col sm:items-start sm:gap-0.5">
+                    <div className="flex w-full items-center justify-center gap-0.5 sm:flex-col sm:items-start sm:gap-0.5">
                       {hasDaily && (
                         <span className="inline-flex items-center gap-1 text-[10px] text-primary">
-                          <FileText className="h-3 w-3 shrink-0" />
+                          <FileText className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" />
                           <span className="hidden truncate sm:inline">Note</span>
                         </span>
                       )}
                       {openCount > 0 && (
-                        <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                        <span className="font-mono text-[9px] sm:text-[10px] tabular-nums text-muted-foreground">
                           <span className="sm:hidden">{openCount}t</span>
                           <span className="hidden sm:inline">
                             {openCount} task{openCount > 1 ? 's' : ''}
@@ -204,7 +204,7 @@ export function CalendarDailyView() {
           </Card>
 
           {/* Selected Day Agenda */}
-          <Card className="gap-0 p-4 sm:p-5 lg:col-span-4">
+          <Card className="gap-0 p-3.5 sm:p-5 lg:col-span-4">
             <aside aria-label="Selected day agenda">
               <div className="flex items-center justify-between gap-2 border-b border-border/60 pb-3">
                 <div>

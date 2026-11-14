@@ -127,8 +127,8 @@ export function TasksView() {
   const hasCustomOptions = priority !== 'medium' || Boolean(reminderLocal) || dueDate !== todayIso;
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-4xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-4xl space-y-4 sm:space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -148,9 +148,9 @@ export function TasksView() {
         </div>
 
         {/* Mobile-Friendly Task Creator */}
-        <Card className="gap-0 p-3.5 sm:p-4">
+        <Card className="gap-0 p-3 sm:p-4">
           <form onSubmit={(e) => void handleCreateTask(e)}>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <Input
                 type="text"
                 value={title}
@@ -288,7 +288,7 @@ export function TasksView() {
           }}
         >
           <div className="no-scrollbar overflow-x-auto pb-0.5">
-            <TabsList className="h-11 w-full justify-between rounded-2xl bg-muted/65 p-1 backdrop-blur-md sm:w-max sm:justify-start">
+            <TabsList className="h-11 w-max min-w-full justify-start gap-1 rounded-2xl bg-muted/65 p-1 backdrop-blur-md">
               {bucketTabs.map((t) => (
                 <TabsTrigger
                   key={t.id}
@@ -307,7 +307,7 @@ export function TasksView() {
 
         {/* Tasks List */}
         {visibleTasks.length === 0 ? (
-          <Card className="p-10 text-center text-sm text-muted-foreground">
+          <Card className="p-8 text-center text-sm text-muted-foreground sm:p-10">
             No tasks in <span className="font-medium capitalize text-foreground">{bucket}</span>.
           </Card>
         ) : (
@@ -317,16 +317,16 @@ export function TasksView() {
                 const progress = getSubtaskProgress(task);
                 const linkedTitle = task.linkedNoteId ? noteTitleMap.get(task.linkedNoteId) : null;
                 return (
-                  <div key={task.id} className="p-3.5 sm:p-4">
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="flex min-w-0 flex-1 items-start gap-2">
+                  <div key={task.id} className="p-3 sm:p-4">
+                    <div className="flex items-start justify-between gap-1.5 sm:gap-2">
+                      <div className="flex min-w-0 flex-1 items-start gap-1.5 sm:gap-2">
                         <Button
                           type="button"
                           variant="ghost"
                           size="icon-lg"
                           onClick={() => void toggleTaskComplete(task.id)}
                           aria-label={`Mark task "${task.title}" ${task.completed ? 'incomplete' : 'complete'}`}
-                          className="min-h-[44px] min-w-[44px] shrink-0 rounded-xl text-muted-foreground hover:text-primary"
+                          className="min-h-[44px] min-w-[44px] shrink-0 rounded-xl text-muted-foreground hover:text-primary active:scale-90 transition-transform"
                         >
                           {task.completed ? (
                             <CheckCircle2 className="h-5 w-5 text-primary" />
@@ -337,7 +337,7 @@ export function TasksView() {
 
                         <div className="min-w-0 flex-1 pt-2">
                           <div
-                            className={`text-sm font-medium ${
+                            className={`break-words text-sm font-medium ${
                               task.completed
                                 ? 'text-muted-foreground line-through'
                                 : 'text-foreground'
