@@ -192,12 +192,12 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-dvh w-screen flex-col overflow-hidden text-foreground">
+    <div className="flex h-dvh w-full max-w-[100vw] flex-col overflow-hidden text-foreground">
       <TopBar />
 
       {dueReminders.length > 0 && (
-        <div className="glass-bar flex shrink-0 items-center justify-between gap-3 border-b border-border/70 px-4 py-1.5 text-xs text-foreground sm:px-5">
-          <div className="flex min-w-0 items-center gap-2">
+        <div className="glass-bar flex shrink-0 items-center justify-between gap-2 border-b border-border/70 px-3 py-1.5 text-xs text-foreground sm:gap-3 sm:px-5">
+          <div className="flex min-w-0 flex-1 items-center gap-2">
             <Bell className="h-3.5 w-3.5 shrink-0 text-primary" />
             <span className="truncate">
               Reminder due: <strong>{dueReminders[0].title}</strong>
@@ -209,7 +209,7 @@ export default function App() {
               variant="ghost"
               size="sm"
               onClick={() => void toggleTaskComplete(dueReminders[0].id)}
-              className="h-8 rounded-lg px-2.5 text-xs font-medium text-primary"
+              className="h-8 rounded-lg px-2 text-xs font-medium text-primary sm:px-2.5"
             >
               Done
             </Button>
@@ -261,7 +261,7 @@ export default function App() {
       <QuickCaptureModal />
       <TemplatePickerModal open={templatesOpen} onClose={() => setTemplatesOpen(false)} />
       <OfflineIndicator />
-      <Toaster position="bottom-center" mobileOffset={{ bottom: 76 }} />
+      <Toaster position="bottom-center" mobileOffset={{ bottom: 84 }} />
     </div>
   );
 }

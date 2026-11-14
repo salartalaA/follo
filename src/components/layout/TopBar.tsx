@@ -75,9 +75,9 @@ export function TopBar() {
   ];
 
   return (
-    <header className="glass-bar sticky top-0 z-30 flex h-[54px] shrink-0 items-center justify-between gap-2 border-b border-border/70 px-3 sm:px-5 md:gap-8">
+    <header className="glass-bar sticky top-0 z-30 flex min-h-[54px] shrink-0 items-center justify-between gap-2 border-b border-border/70 px-2.5 pt-safe sm:px-5 md:gap-8">
       {/* Left: Back / Brand + Space Switcher */}
-      <div className="flex min-w-0 items-center gap-2">
+      <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-2">
         {inMobileNoteDetail && (
           <Button
             type="button"
@@ -85,7 +85,7 @@ export function TopBar() {
             size="icon-lg"
             onClick={() => setSelectedNoteId(null)}
             aria-label="Back to notes list"
-            className="min-h-[44px] min-w-[44px] rounded-xl md:hidden"
+            className="min-h-[44px] min-w-[44px] shrink-0 rounded-xl md:hidden"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
@@ -95,7 +95,7 @@ export function TopBar() {
           type="button"
           variant="ghost"
           onClick={() => setActiveView('home')}
-          className={`h-9 items-center gap-2 rounded-xl px-1.5 text-left whitespace-nowrap shrink-0 hover:bg-transparent ${
+          className={`h-9 items-center gap-1.5 rounded-xl px-1 text-left whitespace-nowrap shrink-0 hover:bg-transparent sm:gap-2 sm:px-1.5 ${
             inMobileNoteDetail ? 'hidden md:inline-flex' : 'inline-flex'
           }`}
         >
@@ -112,40 +112,42 @@ export function TopBar() {
             {activeNote?.title || 'Untitled Note'}
           </span>
         ) : (
-          activeView !== 'home' && (
-            <span className="truncate text-sm font-medium text-muted-foreground md:hidden">
-              · {VIEW_LABELS[activeView]}
-            </span>
-          )
-        )}
+          <>
+            {/* Space Selector - accessible on mobile and desktop */}
+            <div className="flex min-w-0 items-center">
+              <span aria-hidden="true" className="mx-1 text-muted-foreground/40 sm:mx-1.5">
+                /
+              </span>
+              <Select
+                value={activeWorkspaceId}
+                onValueChange={(value) => {
+                  if (value) setActiveWorkspaceId(value);
+                }}
+              >
+                <SelectTrigger
+                  size="sm"
+                  aria-label="Active space"
+                  className="h-7 max-w-[110px] rounded-lg border-border/70 bg-card/60 px-2 text-[11px] font-medium backdrop-blur-md sm:h-8 sm:max-w-[160px] sm:rounded-xl sm:px-2.5 sm:text-xs"
+                >
+                  <SelectValue>{activeWorkspace?.name || 'Personal'}</SelectValue>
+                </SelectTrigger>
+                <SelectContent align="start">
+                  {workspaces.map((ws) => (
+                    <SelectItem key={ws.id} value={ws.id}>
+                      {ws.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-        {/* Desktop Space Selector */}
-        <div className="hidden items-center md:flex">
-          <span aria-hidden="true" className="mr-2 text-muted-foreground/50">
-            /
-          </span>
-          <Select
-            value={activeWorkspaceId}
-            onValueChange={(value) => {
-              if (value) setActiveWorkspaceId(value);
-            }}
-          >
-            <SelectTrigger
-              size="sm"
-              aria-label="Active space"
-              className="h-8 rounded-xl border-border/70 bg-card/60 px-2.5 text-xs font-medium backdrop-blur-md"
-            >
-              <SelectValue>{activeWorkspace?.name || 'Personal'}</SelectValue>
-            </SelectTrigger>
-            <SelectContent align="start">
-              {workspaces.map((ws) => (
-                <SelectItem key={ws.id} value={ws.id}>
-                  {ws.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+            {activeView !== 'home' && (
+              <span className="hidden truncate text-xs font-medium text-muted-foreground sm:inline md:hidden">
+                · {VIEW_LABELS[activeView]}
+              </span>
+            )}
+          </>
+        )}
       </div>
 
       {/* Center: Desktop Single-Line Navigation */}
