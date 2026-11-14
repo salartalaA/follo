@@ -32,7 +32,7 @@ export function TemplatePickerModal({ open, onClose }: TemplatePickerModalProps)
 
   return (
     <Dialog open={open} onOpenChange={(next) => !next && onClose()}>
-      <DialogContent className="max-h-[88vh] max-w-2xl overflow-y-auto p-5 sm:p-6">
+      <DialogContent className="max-h-[85dvh] max-w-2xl overflow-y-auto p-4 sm:p-6">
         <DialogHeader className="border-b border-border/70 pb-3">
           <DialogTitle className="font-display text-base font-semibold">
             Start from a Template
@@ -42,7 +42,7 @@ export function TemplatePickerModal({ open, onClose }: TemplatePickerModalProps)
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
           {NOTE_TEMPLATES.map((tpl) => (
             <Card key={tpl.id} className="gap-0 p-0 transition-colors hover:ring-primary/60">
               <button

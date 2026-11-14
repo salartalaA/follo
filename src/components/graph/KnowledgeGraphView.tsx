@@ -162,7 +162,7 @@ export function KnowledgeGraphView() {
   }
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden px-4 pb-20 pt-5 sm:px-6 md:pb-8 lg:px-8">
+    <div className="flex flex-1 flex-col overflow-hidden px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-8 lg:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 overflow-hidden">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>

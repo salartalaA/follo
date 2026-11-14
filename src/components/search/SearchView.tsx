@@ -148,8 +148,8 @@ export function SearchView() {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-4 sm:space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
@@ -169,14 +169,23 @@ export function SearchView() {
             }}
           >
             <div className="no-scrollbar overflow-x-auto pb-0.5">
-              <TabsList className="h-11 w-max rounded-2xl bg-muted/65 p-1 backdrop-blur-md">
-                <TabsTrigger value="search" className="min-h-[36px] rounded-xl px-3.5 text-xs">
+              <TabsList className="h-11 w-max min-w-full justify-start gap-1 rounded-2xl bg-muted/65 p-1 backdrop-blur-md">
+                <TabsTrigger
+                  value="search"
+                  className="min-h-[36px] rounded-xl px-3 sm:px-3.5 text-xs"
+                >
                   Search
                 </TabsTrigger>
-                <TabsTrigger value="smart" className="min-h-[36px] rounded-xl px-3.5 text-xs">
+                <TabsTrigger
+                  value="smart"
+                  className="min-h-[36px] rounded-xl px-3 sm:px-3.5 text-xs"
+                >
                   Smart Views
                 </TabsTrigger>
-                <TabsTrigger value="diagnostics" className="min-h-[36px] rounded-xl px-3.5 text-xs">
+                <TabsTrigger
+                  value="diagnostics"
+                  className="min-h-[36px] rounded-xl px-3 sm:px-3.5 text-xs"
+                >
                   Note Health ({brokenLinks.length + orphanNotes.length + duplicates.length})
                 </TabsTrigger>
               </TabsList>
@@ -185,9 +194,9 @@ export function SearchView() {
         </div>
 
         {tab === 'search' && (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
             <div className="space-y-4 lg:col-span-2">
-              <Card className="gap-0 p-4">
+              <Card className="gap-0 p-3.5 sm:p-4">
                 <div className="flex items-center gap-2">
                   <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                   <input
@@ -210,7 +219,7 @@ export function SearchView() {
                   </Button>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-border/60 pt-3 text-xs">
+                <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2 border-t border-border/60 pt-3 text-xs">
                   <Select
                     value={kindFilter}
                     onValueChange={(value) => {
@@ -219,7 +228,7 @@ export function SearchView() {
                   >
                     <SelectTrigger
                       aria-label="Filter entity type"
-                      className="h-9 min-w-[126px] rounded-xl bg-background/50 px-2.5 text-xs"
+                      className="h-9 flex-1 sm:flex-none sm:min-w-[126px] rounded-xl bg-background/50 px-2.5 text-xs"
                     >
                       <SelectValue>{ENTITY_LABELS[kindFilter]}</SelectValue>
                     </SelectTrigger>
@@ -241,7 +250,7 @@ export function SearchView() {
                   >
                     <SelectTrigger
                       aria-label="Workspace scope"
-                      className="h-9 min-w-[132px] rounded-xl bg-background/50 px-2.5 text-xs"
+                      className="h-9 flex-1 sm:flex-none sm:min-w-[132px] rounded-xl bg-background/50 px-2.5 text-xs"
                     >
                       <SelectValue>{scope === 'all' ? 'All Spaces' : 'Current Space'}</SelectValue>
                     </SelectTrigger>
@@ -257,7 +266,7 @@ export function SearchView() {
                     onChange={(e) => setTagFilter(e.target.value)}
                     placeholder="Filter #tag..."
                     aria-label="Filter by tag"
-                    className="h-9 w-28 rounded-xl bg-background/50 px-2.5 text-xs"
+                    className="h-9 w-full sm:w-28 rounded-xl bg-background/50 px-2.5 text-xs"
                   />
 
                   <label className="inline-flex min-h-[36px] cursor-pointer items-center gap-1.5 text-muted-foreground">

@@ -278,7 +278,7 @@ export function PdfOcrView() {
       </div>
 
       {/* Main Viewer + Annotations */}
-      <div className="flex flex-1 flex-col overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10">
+      <div className="flex flex-1 flex-col overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10">
         {!selected ? (
           <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
             Upload a PDF or image to read, highlight, and scan text on your device.

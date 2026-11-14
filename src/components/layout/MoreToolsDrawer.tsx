@@ -120,7 +120,7 @@ export function MoreToolsDrawer() {
     <Sheet open={moreSheetOpen} onOpenChange={setMoreSheetOpen}>
       <SheetContent
         side={isDesktop ? 'right' : 'bottom'}
-        className="max-h-[88vh] gap-0 p-0 md:h-full md:max-h-none md:w-96 md:max-w-96"
+        className="max-h-[88dvh] gap-0 p-0 md:h-full md:max-h-none md:w-96 md:max-w-96"
       >
         <div className="pt-2.5 md:hidden">
           <div className="mx-auto h-1.5 w-10 rounded-full bg-border" />

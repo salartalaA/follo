@@ -319,7 +319,7 @@ export function CommandPalette() {
       <DialogContent
         showCloseButton={false}
         onKeyDown={handleKeyDown}
-        className="max-w-xl gap-0 overflow-hidden p-0"
+        className="max-h-[85dvh] max-w-xl gap-0 overflow-hidden p-0 sm:max-h-[80vh]"
       >
         <DialogTitle className="sr-only">Quick Jump and Search</DialogTitle>
 

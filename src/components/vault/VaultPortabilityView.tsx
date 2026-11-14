@@ -139,8 +139,8 @@ export function VaultPortabilityView() {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pb-24 pt-5 sm:px-6 md:pb-10 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-5">
+    <div className="flex-1 overflow-y-auto px-3.5 pt-4 content-pb-mobile sm:px-6 sm:pt-5 md:pb-10 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-4 sm:space-y-5">
         <div>
           <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">
             Backup, Import & Export
@@ -152,7 +152,7 @@ export function VaultPortabilityView() {
         </div>
 
         {/* Summary Strip */}
-        <dl className="grid grid-cols-3 gap-2.5 sm:grid-cols-6">
+        <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
           {[
             { label: 'Notes', value: counts?.notes ?? 0 },
             { label: 'Tasks', value: counts?.tasks ?? 0 },
