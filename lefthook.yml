@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome:
+      glob: "src/**/*.{ts,tsx}"
+      run: npx biome check --no-errors-on-unmatched {staged_files}
+    typecheck:
+      run: npm run lint

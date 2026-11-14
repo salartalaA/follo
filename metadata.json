@@ -1,0 +1,6 @@
+{
+  "name": "Folio",
+  "description": "A local-first personal knowledge, notes, tasks, collections, and document workspace that runs completely offline on your device.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
